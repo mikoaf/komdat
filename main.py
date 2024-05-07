@@ -1,14 +1,20 @@
 from sensor.dht import Dht
+from mqtt.mqtt import mqtts
 import asyncio
 
 Sen = Dht()
+Mqtt = mqtts()
+
 
 async def main():
-    mqtt = "run"
-    if mqtt == "run":
-        while True:
-            await asyncio.sleep(1)
-            p = await Sen.getData(mqtt)
-            print(p)
+    while True:
+        await asyncio.sleep(1)
+        p = await Sen.getData()
+        print(p)
+        if p[0].status == "success":
+            res = await Mqtt.mqttMsg(f"temp: {p[1].temp} hum: {p[1].humidity}")
+            print(res)
+        else:
+            print("failed")
 
 asyncio.run(main())

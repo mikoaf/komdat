@@ -4,3 +4,4 @@ pydantic_core==2.14.5
 typing_extensions==4.8.0
 adafruit-circuitpython-dht==4.0.4
 Adafruit-Blinka==8.39.1
+paho-mqtt==2.1.0
