@@ -1,6 +1,6 @@
 from typing import Tuple
-from model.dht import DhtResult
-from model.response import Response, StatusResponse
+from model.dht.dht import DhtResult
+from model.dht.response import Response, StatusResponse
 from sensor.dhtbase import DhtBase
 import asyncio
 import adafruit_dht

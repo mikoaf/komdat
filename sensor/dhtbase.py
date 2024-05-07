@@ -1,6 +1,6 @@
 from abc import ABC,abstractmethod
-from model.dht import DhtResult
-from model.response import Response
+from model.dht.dht import DhtResult
+from model.dht.response import Response
 from typing import Tuple
 import asyncio
 
