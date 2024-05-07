@@ -11,10 +11,12 @@ async def main():
         await asyncio.sleep(1)
         p = await Sen.getData()
         print(p)
-        if p[0].status == "success":
+        if p[0].message == "success":
             res = await Mqtt.mqttMsg(f"temp: {p[1].temp} hum: {p[1].humidity}")
             print(res)
-        else:
+        elif p[0].message == "failed":
             print("failed")
+        else:
+            print("errors undefined")
 
 asyncio.run(main())
