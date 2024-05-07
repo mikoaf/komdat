@@ -6,8 +6,9 @@ Sen = Dht()
 async def main():
     mqtt = "run"
     if mqtt == "run":
-        p = await Sen.getData(mqtt)
-        print(p)
+        while True:
+            await asyncio.sleep(1)
+            p = await Sen.getData(mqtt)
+            print(p)
 
 asyncio.run(main())
-

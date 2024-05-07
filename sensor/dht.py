@@ -8,14 +8,14 @@ import board
 
 class Dht(DhtBase):
     def __init__(self) -> None:
-        self.dht11_sensor = adafruit_dht.DHT11(board.D26)
+        self.dht11_sensor = adafruit_dht.DHT11(board.D4)
     async def getData(self, msg: str) -> Tuple[Response, DhtResult]:
         try:
             hum = self.dht11_sensor.humidity
             temp = self.dht11_sensor.temperature
             return (Response(status=StatusResponse.success,message="success"), DhtResult(humidity=hum, temp=temp))
-        except RuntimeError as e:
-            return (Response(status=StatusResponse.failed,message=str(e)), DhtResult(humidity=0, temp=0))
+        except RuntimeError as error:
+            return (Response(status=StatusResponse.failed,message=str(error)), DhtResult(humidity=0, temp=0))
         except Exception as e:
             self.dht11_sensor.exit()
             raise e
