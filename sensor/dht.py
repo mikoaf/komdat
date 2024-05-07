@@ -8,7 +8,7 @@ import board
 
 class Dht(DhtBase):
     def __init__(self) -> None:
-        self.dht11_sensor = adafruit_dht.DHT11(board.D4)
+        self.dht11_sensor = adafruit_dht.DHT11(board.D22)
     async def getData(self) -> Tuple[Response, DhtResult]:
         try:
             hum = self.dht11_sensor.humidity

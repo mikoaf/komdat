@@ -5,3 +5,4 @@ typing_extensions==4.8.0
 adafruit-circuitpython-dht==4.0.4
 Adafruit-Blinka==8.39.1
 paho-mqtt==2.1.0
+python-dotenv==1.0.1

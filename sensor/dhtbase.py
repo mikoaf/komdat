@@ -5,5 +5,5 @@ from typing import Tuple
 
 class DhtBase(ABC):
     @abstractmethod
-    async def getData(self,msg:str)->Tuple[Response,DhtResult]:
+    async def getData(self)->Tuple[Response,DhtResult]:
         pass
