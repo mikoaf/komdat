@@ -37,6 +37,17 @@ if [ $process -eq 0 ]; then
 
     sudo npm install -g pm2 -y
 
+    #make .env file
+    echo "\n${bold}==========Creating .env file==========${normal}"
+    MQTT_BROKER="mqtt.eclipseprojects.io"
+    MQTT_PORT=1883
+    PUBLISH_TOPIC="komdat/dht/data"
+    SUBSCRIBE_TOPIC="komdat/dht/start"
+    echo "MQTT_BROKER=$MQTT_BROKER" > $install_path/.env
+    echo "MQTT_PORT=$MQTT_PORT" >> $install_path/.env
+    echo "PUBLISH_TOPIC=$PUBLISH_TOPIC" >> $install_path/.env
+    echo "SUBSCRIBE_TOPIC=$SUBSCRIBE_TOPIC" >> $install_path/.env
+
     #setting up virtual environment
     echo "\n${bold}==========Setting up virtual environment==========${normal}"
     python3 -m venv $install_path/env
@@ -44,7 +55,7 @@ if [ $process -eq 0 ]; then
     if [ $? -eq 0 ]; then
         #installing python dependencies
         echo "\n${bold}==========Installing python dependencies==========${normal}"
-        pip install -r $install_path/requirements.txt
+        python3 -m pip install -r $install_path/requirements.txt
         sleep 0.5
 
         #running the app
