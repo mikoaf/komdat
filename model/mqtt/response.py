@@ -3,7 +3,7 @@ from enum import Enum
 from typing import Optional
 
 class StatusResponse(Enum):
-    success, failed, error = range(3)
+    failed, success, error = range(3)
 
 class Response(BaseModel):
     status: StatusResponse

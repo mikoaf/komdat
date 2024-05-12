@@ -7,3 +7,7 @@ class MqttSend(ABC):
     @abstractmethod
     async def mqttMsg(self,msg:str)->Tuple[Response,MqttSender]:
         pass
+    
+    @abstractmethod
+    async def mqttRead(self,topic:str)->str:
+        pass
