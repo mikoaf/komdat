@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 name=komdat
 install_path=$HOME/$name
@@ -51,8 +51,7 @@ if [ $process -eq 0 ]; then
     #setting up virtual environment
     echo "\nSetting up virtual environment ..."
     python3 -m venv $install_path/env
-    cd $install_path
-    source env/bin/activate
+    source $install_path/env/bin/activate
 
     if [ $? -eq 0 ]; then
         #installing python dependencies
