@@ -17,7 +17,7 @@ sudo apt upgrade -y
 printf "\n${bold}==========Installing git==========${normal}\n"
 sudo apt install git -y
 
-git clone -b nanang-dev https://github.com/mikoaf/komdat.git $install_path
+git clone -b master https://github.com/mikoaf/komdat.git $install_path
 
 process=$?
 
