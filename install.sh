@@ -49,7 +49,7 @@ if [ $process -eq 0 ]; then
 
         #running the app
         echo "\n${bold}==========Running the app with pm2==========${normal}"
-        pm2 start $install_path/app.py --name $name --interpreter $install_path/env/bin/python
+        pm2 start $install_path/main.py --name $name --interpreter $install_path/env/bin/python
         pm2 startup
         pm2 save
         sleep 0.5
