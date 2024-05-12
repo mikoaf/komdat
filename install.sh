@@ -9,12 +9,12 @@ bold=$(tput bold)
 normal=$(tput sgr0)
 
 #getting the latest package list
-echo "\n${bold}==========Updating package list==========${normal}"
+printf "\n${bold}==========Updating package list==========${normal}\n"
 sudo apt update -y
 sudo apt upgrade -y
 
 #installing git
-echo "\n${bold}==========Installing git==========${normal}"
+printf "\n${bold}==========Installing git==========${normal}\n"
 sudo apt install git -y
 
 git clone -b nanang-dev https://github.com/mikoaf/komdat.git $install_path
@@ -23,7 +23,7 @@ process=$?
 
 if [ $process -eq 0 ]; then
     #installing dependencies
-    echo "\n${bold}==========Installing dependencies==========${normal}"
+    printf "\n${bold}==========Installing dependencies==========${normal}\n"
     sudo apt install python3-pip -y
     sudo apt install python3-venv -y
     sudo apt install python3-dev -y
@@ -38,7 +38,7 @@ if [ $process -eq 0 ]; then
     sudo npm install -g pm2 -y
 
     #make .env file
-    echo "\nCreating .env file ..."
+    printf "\nCreating .env file ...\n"
     MQTT_BROKER="mqtt.eclipseprojects.io"
     MQTT_PORT=1883
     PUBLISH_TOPIC="komdat/dht/data"
@@ -49,18 +49,18 @@ if [ $process -eq 0 ]; then
     echo "SUBSCRIBE_TOPIC=$SUBSCRIBE_TOPIC" >> $install_path/.env
 
     #setting up virtual environment
-    echo "\nSetting up virtual environment ..."
+    printf "\nSetting up virtual environment ...\n"
     python3 -m venv $install_path/env
     source $install_path/env/bin/activate
 
     if [ $? -eq 0 ]; then
         #installing python dependencies
-        echo "\n${bold}==========Installing python dependencies==========${normal}"
+        printf "\n${bold}==========Installing python dependencies==========${normal}\n"
         python3 -m pip install -r $install_path/requirements.txt
         sleep 0.5
 
         #running the app
-        echo "\n${bold}==========Running with pm2==========${normal}"
+        printf "\n${bold}==========Running with pm2==========${normal}\n"
         sudo pm2 start $install_path/main.py --name $name --interpreter $install_path/env/bin/python
         sudo pm2 startup
         sudo pm2 save
@@ -69,19 +69,19 @@ if [ $process -eq 0 ]; then
         deactivate
         cd $HOME
 
-        echo "\n${bold}==========Installation completed==========${normal}"
+        printf "\n${bold}==========Installation completed==========${normal}\n"
         echo "The app is running in the background"
         echo "System will reboot in 5 seconds"
         sleep 5
         sudo reboot
     else
-        echo "\n${bold}==========Installation failed==========${normal}"
+        printf "\n${bold}==========Installation failed==========${normal}\n"
         echo "Please check the error message above"
         rm -rf $install_path
         exit 1
     fi
 else
-    echo "\n${bold}==========Installation failed==========${normal}"
+    printf "\n${bold}==========Installation failed==========${normal}\n"
     echo "Please check the error message above"
     rm -rf $install_path
     exit 1
