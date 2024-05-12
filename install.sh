@@ -38,7 +38,7 @@ if [ $process -eq 0 ]; then
     sudo npm install -g pm2 -y
 
     #make .env file
-    echo "\n${bold}==========Creating .env file==========${normal}"
+    echo "\nCreating .env file ..."
     MQTT_BROKER="mqtt.eclipseprojects.io"
     MQTT_PORT=1883
     PUBLISH_TOPIC="komdat/dht/data"
@@ -49,8 +49,10 @@ if [ $process -eq 0 ]; then
     echo "SUBSCRIBE_TOPIC=$SUBSCRIBE_TOPIC" >> $install_path/.env
 
     #setting up virtual environment
-    echo "\n${bold}==========Setting up virtual environment==========${normal}"
+    echo "\nSetting up virtual environment ..."
     python3 -m venv $install_path/env
+    cd $install_path
+    source env/bin/activate
 
     if [ $? -eq 0 ]; then
         #installing python dependencies
@@ -59,11 +61,14 @@ if [ $process -eq 0 ]; then
         sleep 0.5
 
         #running the app
-        echo "\n${bold}==========Running the app with pm2==========${normal}"
+        echo "\n${bold}==========Running with pm2==========${normal}"
         sudo pm2 start $install_path/main.py --name $name --interpreter $install_path/env/bin/python
         sudo pm2 startup
         sudo pm2 save
         sleep 0.5
+
+        deactivate
+        cd $HOME
 
         echo "\n${bold}==========Installation completed==========${normal}"
         echo "The app is running in the background"
