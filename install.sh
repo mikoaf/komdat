@@ -59,12 +59,12 @@ if [ $process -eq 0 ]; then
     else
         echo "\n${bold}==========Installation failed==========${normal}"
         echo "Please check the error message above"
-        # rm -rf $install_path
+        rm -rf $install_path
         exit 1
     fi
 else
     echo "\n${bold}==========Installation failed==========${normal}"
     echo "Please check the error message above"
-    # rm -rf $install_path
+    rm -rf $install_path
     exit 1
 fi
