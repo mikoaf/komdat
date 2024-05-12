@@ -1,1 +1,5 @@
-venv
+/venv/
+/env/
+.env
+/**/__pycache__/
+/model/dht/__pycache__/
