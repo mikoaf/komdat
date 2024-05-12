@@ -49,13 +49,16 @@ if [ $process -eq 0 ]; then
 
         #running the app
         echo "\n${bold}==========Running the app with pm2==========${normal}"
-        pm2 start $install_path/main.py --name $name --interpreter $install_path/env/bin/python
-        pm2 startup
-        pm2 save
+        sudo pm2 start $install_path/main.py --name $name --interpreter $install_path/env/bin/python
+        sudo pm2 startup
+        sudo pm2 save
         sleep 0.5
 
         echo "\n${bold}==========Installation completed==========${normal}"
         echo "The app is running in the background"
+        echo "System will reboot in 5 seconds"
+        sleep 5
+        sudo reboot
     else
         echo "\n${bold}==========Installation failed==========${normal}"
         echo "Please check the error message above"
